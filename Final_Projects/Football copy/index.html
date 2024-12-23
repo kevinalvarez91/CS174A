@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Football</title>
+  <link rel="icon" type="image/jpeg" href="textures/soccerBall.jpeg"> <!-- Ensure correct path -->
+  
+  <!-- Link to the external stylesheet for the scoreboard -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    #help-message {
+          display: none; /* Initially hidden */
+          position: fixed; /* Fixed on the screen */
+          top: 5%; /* Position it from the top */
+          left: 50%; /* Center horizontally */
+          transform: translateX(-50%);
+          background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+          padding: 15px;
+          width: 600px;
+          z-index: 1000; /* Ensure it appears above other elements */
+          font-family: 'Comic Sans MS', cursive, sans-serif;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      #help-prompt {
+          position: fixed; /* Fixed on the screen */
+          top: 0%; /* Position it from the top */
+          left: 90%; /* Center horizontally */
+          transform: translateX(-50%);
+          padding: 5px 5px;
+          width: 250px;
+          color: #e26600;
+          z-index: 1000; /* Ensure it appears above other elements */
+          font-family: 'Comic Sans MS', cursive, sans-serif;
+      }
+  </style>
+</head>
+
+<body>
+  <!-- Canvas for Three.js rendering -->
+  <canvas id="threejs-canvas"></canvas>
+
+  <div id="help-prompt">
+    <p>Press "H" to toggle help menu.</p>
+  </div>
+
+  <div id="help-message">
+    <p>WASD to Move, walk into the football to kick in the direction of the camera.</p>
+    <p>Keepers will start moving side to side when you look in their direction. Take a shot!</p>
+    <p>Positions will be reset every goal, and if the ball goes out of bounds above goalpost height.</p>
+    <p>If you look at the center of any of the bleachers, the crowd will start chanting.</p>
+    <p>Press "B" to toggle visibility of the collision boxes of the keepers.</p>
+  </div>
+  <!-- Scoreboard -->
+  <div class="scoreboard">
+    <span>Score: </span>
+    <span id="score">0</span> <!-- Display the score here -->
+  </div>
+
+  <div class ="help">
+      <span> </span>
+  </div>
+
+  <!-- Three.js Library -->
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>-->
+  
+  <!-- Your custom app.js file -->
+  <script type="module" src="src/app.js"></script>
+  <script>
+    // JavaScript to toggle the visibility of the help message when "H" is pressed
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'H' || event.key === 'h') {
+            // Toggle the visibility of the help message
+            const helpMessage = document.getElementById('help-message');
+            if (helpMessage.style.display === 'none') {
+                helpMessage.style.display = 'block'; // Show the message
+            } else {
+                helpMessage.style.display = 'none'; // Hide the message
+            }
+        }
+    });
+</script>
+</body>
+
+</html>
